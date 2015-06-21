@@ -1,11 +1,10 @@
-#Jekyll-Polymer
+#RETINA BURNER
 A Google Polymer and Default Jekyll Theme based theme for Jekyll
-
-#Created by
-Youngbin Han(sukso96100@gmail.com)
-
+* based on jekyll polymer, Youngbin Han(sukso96100@gmail.com)
+* up`d to polymer 1.0, animations ripped and modified from the polymer neon anim examples
+* simple glitched out blog
 #Preview
-http://youngbin.tk/jekyll-polymer
+http://lodsb.org
 
 #License
 MIT
