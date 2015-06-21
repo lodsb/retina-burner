@@ -1,10 +1,14 @@
-<dom-module id="dev-page">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="/bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+
+<polymer-element name="dev-page">
 
   <style>
 
     .header {
       height: 40%;
-      background: var(--color-one);
+      font-size: 36px;
     }
 
     .body {
@@ -12,46 +16,34 @@
       padding: 8px;
     }
 
-    .square {
-      display: inline-block;
-      width: 150px;
-      height: 150px;
-      margin: 8px;
-      background: #00FF00;
-      font-size: 36px;
-    }
-
-    .square:hover {
-      opacity: 0.5;
-    }
-
   </style>
 
   <template>
 
     <div id="header" class="header">
-      <div style="font-size: 36px;">
-        ≫ proj.dev
-      </div>
-      <div>
-        ⊑⊏ ☷ ⊐⊒ ⊰code⊱ ⊑⊏ ☷ ⊐⊒
-      </div>
+      <div style="width: 100%; background: #000; color: #fff;">≫ proj.dev</div><br>
+      <span style="background: #FE4512;">⊑⊏ ☷ ⊐⊒ ⊰code⊱ <br>2015</span><br>
+        <span style="background: #4512FE;">*=ext, #=hack|proto|test<br>GPL</span><br>
     </div>
 
     <div class="body">
-      <div class="square">sdfgsdfg</div>
-      <div class="square">.dsfg</div>
-      <div class="square">/sdfg</div>
-      <div class="square">/sdfgsdfgsdfg</div>
+      <content select="p"></content>
     </div>
 
   </template>
 
-</dom-module>
-
 <script>
 
   Polymer({
+    created: function(){
+      this.squaresArray = [];
+
+      var squares = Polymer.dom(this.root).querySelectorAll('.dev-infobox');
+      for	(index = 0; index < squares.length; index++) {
+          this.squaresArray.push(squares[index]);
+      }
+
+      },
 
     is: 'dev-page',
 
@@ -71,8 +63,6 @@
 
       animationConfig: {
         value: function() {
-          var squares = Polymer.dom(this.root).querySelectorAll('.square');
-          var squaresArray = Array.prototype.slice.call(squares);
           return {
             'entry': [{
               name: 'hero-animation',
@@ -82,7 +72,7 @@
               name: 'cascaded-animation',
               animation: 'transform-animation',
               transformFrom: 'translateX(-200vh)',
-              nodes: squaresArray
+              nodes: this.squaresArray
             }],
 
             'exit': [{
@@ -92,7 +82,7 @@
               name: 'cascaded-animation',
               animation: 'transform-animation',
               transformTo: 'translateY(60vh)',
-              nodes: squaresArray
+              nodes: this.squaresArray
             }]
           };
         }
@@ -102,3 +92,5 @@
   });
 
 </script>
+
+</polymer-element>

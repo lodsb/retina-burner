@@ -3,14 +3,31 @@ layout: default
 title: lodsb.org - music, dev, research
 ---
 
-
-{% include dev-page.html %}
-{% include pub-page.html %}
-{% include blog-page.html %}
-
     <template is="dom-bind">
       <style>
         .music-infobox {
+          display: inline-block;
+          margin: 8px;
+          font-size: 36px;
+          vertical-align: top;
+          text-align: center;
+        }
+        .dev-infobox {
+          display: inline-block;
+          margin: 8px;
+          font-size: 36px;
+          vertical-align: top;
+          text-align: center;
+          background:#FA2356;
+        }
+        .pub-infobox {
+          display: inline-block;
+          margin: 8px;
+          font-size: 36px;
+          vertical-align: top;
+          text-align: center;
+        }
+        .blog-infobox {
           display: inline-block;
           margin: 8px;
           font-size: 36px;
@@ -42,7 +59,27 @@ title: lodsb.org - music, dev, research
 
         </music-page>
 
-        <dev-page on-click="_onDevClick"></dev-page>
+        <dev-page on-click="_onDevClick">
+
+          {% for post in site.posts %}
+            {% if post.categories contains 'dev' %}
+              <p class ="dev-infobox">
+                {% if post.categories contains 'hack' %}
+                  #
+                {% endif %}
+                {% if post.categories contains 'link' %}
+                  *
+                {% else %}
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <br>
+                {% endif %}
+                {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+              </p>
+            {% endif %}
+          {% endfor %}
+
+        </dev-page>
+
         <pub-page on-click="_onPubClick"></pub-page>
         <blog-page on-click="_onBlogClick"></blog-page>
 
