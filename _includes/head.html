@@ -10,6 +10,37 @@
   <script src="{{ "/bower_components/webcomponentsjs/webcomponents.js" | prepend: site.baseurl }}"></script>
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-<link rel="stylesheet" href="{{ "/css/common.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/common.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+<!-- Social Sharing Plugin -->
+<script type="text/javascript" src="{{ "/js/jquery.min.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/js/jquery.socialshareprivacy.min.js" | prepend: site.baseurl }}"></script>
+<script type="application/x-social-share-privacy-settings">
+  {"path_prefix":"/",
+  "layout":"line",
+  "image":"img",
+  "css_path": "{{ "css/jquery.socialshareprivacy.min.css" | prepend: site.baseurl }}",
+  "services":{
+              "buffer":{"status":false},
+              "delicious":{"status":false},
+              "disqus":{"status":false},
+              "flattr":{"status":false},
+              "hackernews":{"status":false},
+              "linkedin":{"status":false},
+              "mail":{"status":false},
+              "pinterest":{"status":false},
+              "reddit":{"status":false},
+              "stumbleupon":{"status":false},
+              "xing":{"status":false},
+              "fbshare":{"status":false}
+            }
+  }
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.share').socialSharePrivacy();
+});
+</script>
