@@ -1,39 +1,80 @@
 ---
 layout: default
-title: Home
+title: lodsb.org - music, dev, research
 ---
 
 
-<core-drawer-panel id="drawerPanel">
+{% include dev-page.html %}
+{% include pub-page.html %}
+{% include blog-page.html %}
 
-  <core-header-panel drawer>
-      {% include drawer.html %}
-   </core-header-panel>
+    <template is="dom-bind">
+      <style>
+        .music-infobox {
+          display: inline-block;
+          margin: 8px;
+          font-size: 36px;
+          vertical-align: top;
+          text-align: center;
+        }
+      </style>
 
-  <core-scroll-header-panel condenses keepcondensedheader main>
-    <core-toolbar class="super-tall" id="mainheader">
-      <paper-icon-button 
-        id="navicon" icon="menu"></paper-icon-button>
-        <h1 class="bottom indent title">{{ page.title }}</h1>
+      <neon-animated-pages id="pages" selected="0">
 
-    </core-toolbar>
-    <div class="main-content">
-         {% for post in site.posts %}
-        <paper-shadow class="post-card" z="1">
-        <card>
-        <p class="card-content"><core-icon icon="today"></core-icon> {{ post.date | date: "%Y.%m.%d" }}</p>
+        <main-page on-circle-click="_onMainClick"></main-page>
 
-        <h1 class="card-content">{{ post.title }}</h1>
-            <p class="card-content">{{ post.content | strip_html | truncatewords:50 }}</p>
-            <a href="{{ post.url | prepend: site.baseurl }}">
-            <paper-button raised class="card-content"><core-icon icon="add-box"></core-icon> Read More</paper-button></a>
-            <br><br>
-            </card>
-        </paper-shadow>
-      
-    {% endfor %}
-    </div>
-  </core-scroll-header-panel>
+        <music-page on-click="_onMusicClick">
 
-</core-drawer-panel>
-<script src="{{ "/js/common.js" | prepend: site.baseurl }}"></script>
+          <p class ="music-infobox" style="padding-top: 5px;">
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/118285592&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false">
+            </iframe>
+          </p>
+
+          {% for post in site.posts %}
+            {% if post.categories contains 'music' %}
+                <p class ="music-infobox">
+                  <a href="{{ post.url }}" style="background: #FF0000;">{{ post.title }}</a>
+                  <br>
+                  {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+                </p>
+            {% endif %}
+          {% endfor %}
+
+        </music-page>
+
+        <dev-page on-click="_onDevClick"></dev-page>
+        <pub-page on-click="_onPubClick"></pub-page>
+        <blog-page on-click="_onBlogClick"></blog-page>
+
+      </neon-animated-pages>
+
+    </template>
+
+    <script>
+
+      var scope = document.querySelector('template[is="dom-bind"]');
+
+      scope._onMainClick = function(event) {
+        var pageId = document.querySelector('main-page').clickedCircleID + 1;
+        this.$.pages.selected = pageId;
+      };
+
+      scope._onMusicClick = function(event) {
+        this.$.pages.selected = 0;
+      };
+
+      scope._onDevClick = function(event) {
+        this.$.pages.selected = 0;
+      };
+
+      scope._onPubClick = function(event) {
+        this.$.pages.selected = 0;
+      };
+
+      scope._onBlogClick = function(event) {
+        this.$.pages.selected = 0;
+      };
+
+    </script>
+
+<!--<script src="{{ "/js/common.js" | prepend: site.baseurl }}"></script>-->

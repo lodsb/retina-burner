@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {% include head.html %}
-    {% include common-imports.html %}
-    </head>
-    <body unresolved>
-        {% include common-body.html %}
+  <head>
+      {% include head.html %}
+      {% include common-imports.html %}
+
+    <style>
+
+      body {
+        overflow: hidden;
+      }
+
+      neon-animated-pages {
+        height: 100%;
+      }
+
+    </style>
+
+    <style is="custom-style">
+
+      :root {
+        --color-one: #4dd0e1;
+        --color-two: #ff9800;
+      }
+
+    </style>
+
+  </head>
+
+  <body class="fullbleed" style="background: url(/img/glitch2.jpg) repeat-y;
+                                 background-size: cover;
+                                 overflow-y: scroll;">
+
+    {% include common-body.html %}
+
     {{ content }}
-    </body>
+  </body>
+
 </html>

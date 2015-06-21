@@ -1,14 +1,36 @@
-   <div id="navheader">
-            <br>
-            <img class="profile" src="/img/profile.png">
-            <h2>{{ site.title }}</h2>
-            <p>{{ site.short-description }}</p>
-      </div>
-    <core-menu>
-        {% for page in site.pages %}
-          {% if page.title %}
-        <a href="{{ page.url | prepend: site.baseurl }}">
-        <paper-item>{{ page.title }}</paper-item></a>
-          {% endif %}
-        {% endfor %}
-    </core-menu>
+<div>
+  <br>
+  <img class="profile" src="/img/profile.png">
+  <h2>{{ site.title }}</h2>
+  <p>{{ site.short-description }}</p>
+</div>
+
+<div>
+    <div class="horizontal-section">
+      <paper-menu class="list">
+          {% for page in site.pages %}
+            {% if page.title %}
+              <a href="{{ page.url | prepend: site.baseurl }}">
+                <paper-item>
+                {{ page.title }} X
+                </paper-item>
+              </a>
+            {% endif %}
+          {% endfor %}
+      </paper-menu>
+    </div>
+</div>
+
+<paper-header-panel drawer>
+  <paper-toolbar>
+    <div>Application</div>
+  </paper-toolbar>
+  <div> Drawer content... </div>
+</paper-header-panel>
+<paper-header-panel main>
+  <paper-toolbar>
+    <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+    <div>Title</div>
+  </paper-toolbar>
+  <div> Main content... </div>
+</paper-header-panel>

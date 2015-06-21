@@ -1,55 +1,59 @@
 ---
 layout: default
 ---
-<core-drawer-panel id="drawerPanel">
 
-  <core-header-panel drawer>
-      {% include drawer.html %}
-   </core-header-panel>
+<div style="font-size: 40px;">
+  <div style="width: 100%; background: #FFF;"><a href="/" title="Home"><<< BACK ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ </a></div><br>
+    <span style="background: #FE4512;">{{ page.title }} >>
+      {% for category in page.categories %}
+      <a href="{{ site.baseurl }}/tags/#{{ category }}"> {{ category }} </a><br>
+      {% endfor %}
+    </span>
 
-  <core-scroll-header-panel condenses keepcondensedheader main>
-    <core-toolbar class="super-tall" id="mainheader">
-      <paper-icon-button 
-        id="navicon" icon="menu"></paper-icon-button>
-        <h1 class="bottom indent title">{{ page.title }}</h1>
+    <span style="background: #4512FE;">
+      posted @ {{ page.date | date: "%Y.%m.%d" }}
+    </span>
+</div>
 
-    </core-toolbar>
-    <div class="main-content">
-         <article class="post-content">
+<div style="width: 100%; padding-top: 20px;">
+  <div style="float: left; width: 78%; background: #FFF; padding: 10px;">
     {{ content }}
-  </article>
-        <paper-shadow class="post-card" z="1">
-            <card>
-                <p class="card-content"><core-icon icon="today"></core-icon> {{ page.date | date: "%Y.%m.%d" }}</p> 
-                <p class="card-content"><core-icon icon="label"></core-icon> Tags</p>
-                 {% for tag in page.tags %}
-                <a class="card-content" href="{{ site.baseurl }}/tags/#{{ tag }}"> 
-                    <paper-button>{{ tag }}</paper-button> </a>
-                {% endfor %}
-            </card>
-           
-        </paper-shadow>
-    </div>
-  </core-scroll-header-panel>
+  </div>
 
-</core-drawer-panel>
-<script src="{{ "/js/common.js" | prepend: site.baseurl }}"></script>
+  <div style="float: right; width: 18%; background: #FFF;">
 
+    {% for post in site.posts  %}
 
+       {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+       {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
 
+       {% if forloop.first %}
+            <paper-shadow class="post-card" z="1">
+                <card>
+       <h2 class="card-content" id="{{ this_year }}-ref">{{this_year}}</h2><br>
+       <!-- <ul> -->
+       {% endif %}
 
+       <li>
+         <h4 class="card-content"><a href="{{ post.url }}">{{ post.title }} </a>
+           {% for category in post.categories %}
+           <a href="{{ site.baseurl }}/tags/#{{ category }}">: {{ category }} </a>
+           {% endfor %}
+         </h4>
+       </li>
+        {% if forloop.last %}
+                  </card>
+             </paper-shadow>
+        {% else %}
+         {% if this_year != next_year %}
+                   </card>
+               </paper-shadow>
+          <paper-shadow class="post-card" z="1">
+              <card>
+         <h2 class="card-content" id="{{ next_year }}-ref">{{next_year}}</h2>
+         {% endif %}
+      {% endif %}
 
-
-
-
-
-<div class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
-
-  
-
+    {% endfor %}
+  </div>
 </div>

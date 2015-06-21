@@ -2,23 +2,19 @@
 layout: default
 ---
 
-<core-drawer-panel id="drawerPanel">
+<div style="font-size: 40px;">
+  <div style="width: 100%; background: #FFF;"><a href="/" title="Home"><<< BACK</a></div><br>
+    <span style="background: #FE4512;">{{ page.title }} >>
+      {% for category in page.categories %}
+      <a href="{{ site.baseurl }}/tags/#{{ category }}"> {{ category }} </a><br>
+      {% endfor %}
+    </span>
 
-  <core-header-panel drawer>
-      {% include drawer.html %}
-   </core-header-panel>
+</div>
 
-  <core-scroll-header-panel condenses keepcondensedheader main>
-    <core-toolbar class="super-tall" id="mainheader">
-      <paper-icon-button 
-        id="navicon" icon="menu"></paper-icon-button>
-        <h1 class="bottom indent title">{{ page.title }}</h1>
-
-    </core-toolbar>
-    <div class="main-content">
-          {{ content }}
-    </div>
-  </core-scroll-header-panel>
-
-</core-drawer-panel>
-<script src="{{ "/js/common.js" | prepend: site.baseurl }}"></script>
+<div style="width: 100%;">
+  <div style="width: 50%; padding: 20px;  background: #FFF;   margin-left: auto ;
+  margin-right: auto;">
+  {{content}}
+  </div>
+</div>

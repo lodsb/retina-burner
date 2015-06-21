@@ -1,0 +1,93 @@
+<dom-module id="pub-page">
+
+  <style>
+
+    .header {
+      height: 40%;
+      background: var(--color-one);
+    }
+
+    .body {
+      text-align: center;
+      padding: 8px;
+    }
+
+    .square {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+      margin: 8px;
+      background: #00A00A;
+      font-size: 36px;
+    }
+
+  </style>
+
+  <template>
+
+    <div id="header" class="header">FOOO</div>
+
+    <div class="body">
+      <div class="square">FF</div>
+      <div class="square">.asd</div>
+      <div class="square">/asd</div>
+      <div class="square">/dssssev</div>
+    </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'pub-page',
+
+    behaviors: [
+      Polymer.NeonSharedElementAnimatableBehavior
+    ],
+
+    properties: {
+
+      sharedElements: {
+        value: function() {
+          return {
+            'hero': this.$.header
+          }
+        }
+      },
+
+      animationConfig: {
+        value: function() {
+          var squares = Polymer.dom(this.root).querySelectorAll('.square');
+          var squaresArray = Array.prototype.slice.call(squares);
+          return {
+            'entry': [{
+              name: 'hero-animation',
+              id: 'hero',
+              toPage: this
+            }, {
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformFrom: 'translateY(100%)',
+              nodes: squaresArray
+            }],
+
+            'exit': [{
+              name: 'slide-up-animation',
+              node: this.$.header
+            }, {
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformTo: 'translateY(60vh)',
+              nodes: squaresArray
+            }]
+          };
+        }
+      }
+    }
+
+  });
+
+</script>

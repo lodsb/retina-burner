@@ -1,0 +1,104 @@
+<dom-module id="dev-page">
+
+  <style>
+
+    .header {
+      height: 40%;
+      background: var(--color-one);
+    }
+
+    .body {
+      text-align: center;
+      padding: 8px;
+    }
+
+    .square {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+      margin: 8px;
+      background: #00FF00;
+      font-size: 36px;
+    }
+
+    .square:hover {
+      opacity: 0.5;
+    }
+
+  </style>
+
+  <template>
+
+    <div id="header" class="header">
+      <div style="font-size: 36px;">
+        ≫ proj.dev
+      </div>
+      <div>
+        ⊑⊏ ☷ ⊐⊒ ⊰code⊱ ⊑⊏ ☷ ⊐⊒
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="square">sdfgsdfg</div>
+      <div class="square">.dsfg</div>
+      <div class="square">/sdfg</div>
+      <div class="square">/sdfgsdfgsdfg</div>
+    </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'dev-page',
+
+    behaviors: [
+      Polymer.NeonSharedElementAnimatableBehavior
+    ],
+
+    properties: {
+
+      sharedElements: {
+        value: function() {
+          return {
+            'hero': this.$.header
+          }
+        }
+      },
+
+      animationConfig: {
+        value: function() {
+          var squares = Polymer.dom(this.root).querySelectorAll('.square');
+          var squaresArray = Array.prototype.slice.call(squares);
+          return {
+            'entry': [{
+              name: 'hero-animation',
+              id: 'hero',
+              toPage: this
+            }, {
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformFrom: 'translateX(-200vh)',
+              nodes: squaresArray
+            }],
+
+            'exit': [{
+              name: 'slide-up-animation',
+              node: this.$.header
+            }, {
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformTo: 'translateY(60vh)',
+              nodes: squaresArray
+            }]
+          };
+        }
+      }
+    }
+
+  });
+
+</script>
