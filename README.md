@@ -8,5 +8,8 @@ A Google Polymer based theme for Jekyll
 #Preview
 http://lodsb.org
 
+#Background
+[Glitched VLC](https://flic.kr/p/84AUPV) by [Matt Hannon](https://www.flickr.com/photos/matthannon/)
+
 #License
 MIT
