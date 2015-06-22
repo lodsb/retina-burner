@@ -1,8 +1,8 @@
 # Site settings
 title: lodsb.org - music, dev, research
 email: lodsb(at)lodsb.org
-short-description: Hello World
-description: XXX
+short-description: piep
+description: music, dev, research
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://lodsb.org" # the base hostname & protocol for your site
 
