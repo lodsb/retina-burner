@@ -13,8 +13,10 @@ permalink: /categories/
   <div style="width: 50%; padding: 20px;  background: #FFF;   margin-left: auto ;
   margin-right: auto;">
 
+  <h1>Directory listing </h1>
+
   {% for category in site.categories %}
-  <h1 id="{{ category | first }}">{{ category | first }}</h1>
+  <h2 id="{{ category | first }}">/{{ category | first }}</h2>
     <paper-shadow class="post-card" z="1">
       <card>
         {% for posts in category %}
