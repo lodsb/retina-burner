@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-center-center);
     }
 
-    .circle {
+    .main_button {
       display: inline-block;
       box-sizing: border-box;
       margin: 8px;
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       transition: all 0.4s ease-out;
     }
 
-    .circle:hover {
+    .main_button:hover {
       color: #000;
       background: #FFF;
     }
@@ -47,6 +47,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .inner_circle {
       padding-top: 48px;
       font-size: 32px;
+      text-align: center;
+    }
+
+    .main_body {
+      width:100%;
+      padding-bottom: 20px;
       text-align: center;
     }
 
@@ -90,21 +96,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="circle" style="background: url(img/btn2bg.png);">
     -->
 
-    <div class="body">
+    <div class="main_body">
       <div class="lodsb_header">
         <img style="height:auto; width:100%; max-width:419px; max-height:144px;" src="img/lodsb_final4.png">
       </div>
 
-      <div class="circle">
+      <div class="main_button">
           music
       </div>
-      <div class="circle">
+      <div class="main_button">
           dev
       </div>
-      <div class="circle">
+      <div class="main_button">
           pub
       </div>
-      <div class="circle">
+      <div class="main_button">
           blog
       </div>
 
@@ -125,7 +131,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="https://twitter.com/lodsb" class="main"><i class="fa fa-twitter"></i></a>
         </div>
         <br>
-        <span style="font-size: 16px; background: #000;"><a href="/about/" class="main">OS</a> ► 
+        <span style="font-size: 16px; background: #000;"><a href="/about/" class="main">OS</a> ►
           <span style="color:#f20">R</span>
           <span style="color:#fF5">E</span>
           <span style="color:#f0F">T</span>
@@ -154,7 +160,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       animationConfig: {
         value: function() {
-          var circles = Polymer.dom(this.root).querySelectorAll('.circle');
+          var circles = Polymer.dom(this.root).querySelectorAll('.main_button');
           var lodsbHeader = Polymer.dom(this.root).querySelectorAll('.lodsb_header');
           var lodsbFooter = Polymer.dom(this.root).querySelectorAll('.lodsb_footer');
           var circlesArray = Array.prototype.slice.call(circles);
@@ -205,7 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _onClick: function(event) {
       var target = event.target;
-      if (target.classList.contains('circle')) {
+      if (target.classList.contains('main_button')) {
         // configure the page animation
         this.sharedElements = {
           'hero': target
@@ -215,7 +221,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var circleIndex;
 
-        var circles = Polymer.dom(this.root).querySelectorAll('.circle');
+        var circles = Polymer.dom(this.root).querySelectorAll('.main_button');
         for (var node, index = 0; node = circles[index]; index++) {
           if (node !== event.target) {
             nodesToScale.push(node);

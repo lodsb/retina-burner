@@ -26,13 +26,18 @@ title: lodsb.org - music, dev, research
           font-size: 36px;
           vertical-align: top;
           text-align: center;
+          background: #FFF;
         }
+
         .blog-infobox {
           display: inline-block;
-          margin: 8px;
-          font-size: 36px;
+          margin: 15px;
+          padding: 5px;
+          width:250px;
+          font-size: 16px;
           vertical-align: top;
           text-align: center;
+          background: #FF5CAF;
         }
       </style>
 
@@ -50,9 +55,17 @@ title: lodsb.org - music, dev, research
           {% for post in site.posts %}
             {% if post.categories contains 'music' %}
                 <p class ="music-infobox">
-                  <a href="{{ post.url }}" style="background: #FF0000;">{{ post.title }}</a>
+                  <a href="{{ post.url }}" style="background: #FF0000;">
+                      {% if post.categories contains 'compilation' %}
+                        *
+                      {% endif %}
+                      {{ post.title }}
+                  </a>
                   <br>
-                  {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+                  {% assign image = post.images[0] %}
+                  {% include cover_image.html image=image %}
+                  <br>
+                  <span style="color: #000; background: #FFF;">{{ post.date | date: "%Y" }}</span>
                 </p>
             {% endif %}
           {% endfor %}
@@ -80,8 +93,33 @@ title: lodsb.org - music, dev, research
 
         </dev-page>
 
-        <pub-page on-click="_onPubClick"></pub-page>
-        <blog-page on-click="_onBlogClick"></blog-page>
+        <pub-page on-click="_onPubClick">
+          {% for post in site.posts %}
+            {% if post.categories contains 'pub' %}
+                <p class ="pub-infobox">
+                  <a href="{{ post.url }}">{{ post.title }}</a>
+                  <br>
+                  {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
+                </p>
+            {% endif %}
+          {% endfor %}
+        </pub-page>
+
+        <blog-page on-click="_onBlogClick">
+          {% for post in site.posts %}
+            {% if post.categories contains 'blog' %}
+                <p class ="blog-infobox">
+                  <span style="color: #FFF;">{{ post.date | date: "%Y.%m.%d" }}</span>
+                  <br>
+                  <span style="font-size: 20px;">{{ post.title | truncatewords:3 }}</span>
+                  <br>
+                  <a href="{{ post.url | prepend: site.baseurl }}">
+                     <paper-button style="vertical-align:bottom;">Read More</paper-button>
+                  </a>
+                </p>
+            {% endif %}
+          {% endfor %}
+        </blog-page>
 
       </neon-animated-pages>
 

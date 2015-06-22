@@ -3,12 +3,7 @@ layout: default
 ---
 
 <div style="font-size: 40px;">
-  <div style="width: 100%; background: #FFF;"><a href="/" title="Home"><<< BACK ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ </a></div><br>
-    <span style="background: #FE4512;">{{ page.title }} >>
-      {% for category in page.categories %}
-      <a href="{{ site.baseurl }}/tags/#{{ category }}"> {{ category }} </a><br>
-      {% endfor %}
-    </span>
+    {% include header.html %}
 
     <span style="background: #4512FE;">
       posted @ {{ page.date | date: "%Y.%m.%d" }}
@@ -16,7 +11,7 @@ layout: default
 </div>
 
 <div style="width: 100%; padding-top: 20px;">
-  <div style="float: left; width: 78%; background: #FFF; padding: 10px;">
+  <div style="float: left; width: 78%; background: #FFF; padding: 20px;">
     {{ content }}
     {% include social-sharing.html %}
   </div>
@@ -38,7 +33,7 @@ layout: default
        <li>
          <h4 class="card-content"><a href="{{ post.url }}">{{ post.title }} </a>
            {% for category in post.categories %}
-           <a href="{{ site.baseurl }}/tags/#{{ category }}">: {{ category }} </a>
+           <a href="{{ site.baseurl }}/categories/#{{ category }}">: {{ category }} </a>
            {% endfor %}
          </h4>
        </li>

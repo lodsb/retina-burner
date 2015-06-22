@@ -1,0 +1,32 @@
+---
+layout: default
+title: Tags
+permalink: /categories/
+---
+
+
+<div style="font-size: 40px;">
+  {% include header.html %}
+</div>
+
+<div style="width: 100%;">
+  <div style="width: 50%; padding: 20px;  background: #FFF;   margin-left: auto ;
+  margin-right: auto;">
+
+  {% for category in site.categories %}
+  <h1 id="{{ category | first }}">{{ category | first }}</h1>
+    <paper-shadow class="post-card" z="1">
+      <card>
+        {% for posts in category %}
+          {% for post in posts %}
+              <a href="{{ post.url }}">
+                <h4 class="card-content">{{ post.title }} <br><small>{{ post.date | date: "%Y/%m/%d" }}</small></h4>
+              </a>
+          {% endfor %}
+        {% endfor %}
+      </card>
+    </paper-shadow>
+  {% endfor %}
+
+  </div>
+</div>

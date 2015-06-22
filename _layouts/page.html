@@ -3,13 +3,7 @@ layout: default
 ---
 
 <div style="font-size: 40px;">
-  <div style="width: 100%; background: #FFF;"><a href="/" title="Home"><<< BACK</a></div><br>
-    <span style="background: #FE4512;">{{ page.title }} >>
-      {% for category in page.categories %}
-      <a href="{{ site.baseurl }}/tags/#{{ category }}"> {{ category }} </a><br>
-      {% endfor %}
-    </span>
-
+  {% include header.html %}
 </div>
 
 <div style="width: 100%;">
