@@ -1,6 +1,11 @@
-<polymer-element name="blog-page">
+<dom-module name="blog-page">
 
   <style>
+
+    .blog_header {
+      height: 10%;
+      font-size: 36px;
+    }
 
     .blog_body {
       text-align: center;
@@ -10,7 +15,9 @@
   </style>
 
   <template>
-
+    <div id="header" class="blog_header">
+      <div style="width: 100%; background: #123; color: #FC0;">≫ tum^H^H^HBLARGH</div><br>
+    </div>
     <div class="blog_body">
       <content select="p"></content>
     </div>
@@ -49,7 +56,12 @@
       animationConfig: {
         value: function() {
           return {
-            'entry': [{
+            'entry': [
+              {
+                name: 'hero-animation',
+                id: 'hero',
+                toPage: this
+              }, {
               name: 'cascaded-animation',
               animation: 'transform-animation',
               transformFrom: 'translateX(200vw)',
@@ -57,6 +69,9 @@
             }],
 
             'exit': [{
+              name: 'slide-up-animation',
+              node: this.$.header
+            },{
               name: 'cascaded-animation',
               animation: 'transform-animation',
               transformTo: 'translateY(200vh)',
@@ -71,4 +86,4 @@
 
 </script>
 
-</polymer-element>
+</dom-module>
